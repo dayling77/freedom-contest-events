@@ -14,42 +14,1927 @@
 
   <style>
 
+    * {
+      box-sizing: border-box;
+    }
+
+
     html,
     body {
       margin: 0;
       padding: 0;
 
-      width: 100%;
-      height: 100%;
+      min-height: 100%;
 
-      overflow: hidden;
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
 
-      background: #f8fafc;
+      background:
+        linear-gradient(
+          135deg,
+          #f8fafc 0%,
+          #eef2ff 50%,
+          #f8fafc 100%
+        );
+
+      color: #172033;
     }
 
-    iframe {
-      display: block;
+
+    body {
+      min-height: 100vh;
+    }
+
+
+    /* HEADER */
+
+    .header {
 
       width: 100%;
-      height: 100%;
 
-      border: 0;
+      background:
+        linear-gradient(
+          135deg,
+          #0f172a,
+          #1e3a8a
+        );
+
+      color: white;
+
+      padding:
+        25px 20px;
+
+      text-align: center;
+
+      box-shadow:
+        0 4px 18px
+        rgba(0,0,0,0.12);
+    }
+
+
+    .contest-title {
+
+      font-size: 30px;
+
+      font-weight: 900;
+
+      letter-spacing:
+        0.5px;
+
+      margin-bottom:
+        8px;
+    }
+
+
+    .header h1 {
 
       margin: 0;
-      padding: 0;
+
+      font-size: 21px;
+
+      font-weight: 600;
+    }
+
+
+    /* CONTAINER */
+
+    .container {
+
+      width: 100%;
+
+      max-width: 850px;
+
+      margin:
+        35px auto;
+
+      padding:
+        0 18px;
+    }
+
+
+    /* CARD */
+
+    .card {
+
+      background:
+        white;
+
+      border-radius:
+        18px;
+
+      padding:
+        30px;
+
+      box-shadow:
+        0 10px 35px
+        rgba(15,23,42,0.10);
+
+      border:
+        1px solid #e5e7eb;
+
+      margin-bottom:
+        22px;
+    }
+
+
+    /* QUESTION */
+
+    .question {
+
+      font-size:
+        20px;
+
+      font-weight:
+        700;
+
+      margin-bottom:
+        14px;
+    }
+
+
+    /* INPUTS */
+
+    label {
+
+      display:
+        block;
+
+      font-size:
+        15px;
+
+      font-weight:
+        700;
+
+      margin-bottom:
+        7px;
+
+      color:
+        #334155;
+    }
+
+
+    input,
+    select {
+
+      width:
+        100%;
+
+      padding:
+        14px 15px;
+
+      border-radius:
+        10px;
+
+      border:
+        1px solid #cbd5e1;
+
+      font-size:
+        16px;
+
+      background:
+        white;
+
+      outline:
+        none;
+    }
+
+
+    input:focus,
+    select:focus {
+
+      border-color:
+        #2563eb;
+
+      box-shadow:
+        0 0 0 3px
+        rgba(37,99,235,0.12);
+    }
+
+
+    /* BUTTON */
+
+    .btn {
+
+      width:
+        100%;
+
+      margin-top:
+        18px;
+
+      border:
+        none;
+
+      border-radius:
+        11px;
+
+      padding:
+        15px 20px;
+
+      font-size:
+        17px;
+
+      font-weight:
+        800;
+
+      cursor:
+        pointer;
+
+      color:
+        white;
+
+      background:
+        linear-gradient(
+          135deg,
+          #1d4ed8,
+          #2563eb
+        );
+
+      box-shadow:
+        0 7px 18px
+        rgba(37,99,235,0.20);
+    }
+
+
+    .btn:disabled {
+
+      opacity:
+        0.6;
+
+      cursor:
+        not-allowed;
+    }
+
+
+    /* HIDDEN */
+
+    .hidden {
+
+      display:
+        none !important;
+    }
+
+
+    /* DETAILS */
+
+    .details-grid {
+
+      display:
+        grid;
+
+      grid-template-columns:
+        repeat(2, minmax(0,1fr));
+
+      gap:
+        18px;
+    }
+
+
+    .detail-box {
+
+      background:
+        #f8fafc;
+
+      border:
+        1px solid #e2e8f0;
+
+      border-radius:
+        12px;
+
+      padding:
+        15px;
+    }
+
+
+    .detail-label {
+
+      font-size:
+        12px;
+
+      text-transform:
+        uppercase;
+
+      letter-spacing:
+        0.7px;
+
+      font-weight:
+        800;
+
+      color:
+        #64748b;
+
+      margin-bottom:
+        5px;
+    }
+
+
+    .detail-value {
+
+      font-size:
+        17px;
+
+      font-weight:
+        700;
+
+      color:
+        #172033;
+
+      word-break:
+        break-word;
+    }
+
+
+    .address-box {
+
+      grid-column:
+        1 / -1;
+    }
+
+
+    /* SECTION */
+
+    .section-title {
+
+      font-size:
+        22px;
+
+      font-weight:
+        800;
+
+      color:
+        #0f172a;
+
+      margin:
+        0 0 20px 0;
+    }
+
+
+    /* DISPATCH */
+
+    .dispatch-box {
+
+      background:
+        #eff6ff;
+
+      border:
+        1px solid #bfdbfe;
+
+      border-radius:
+        12px;
+
+      padding:
+        16px;
+
+      margin-bottom:
+        22px;
+    }
+
+
+    .dispatch-label {
+
+      color:
+        #1e40af;
+
+      font-size:
+        13px;
+
+      font-weight:
+        800;
+
+      text-transform:
+        uppercase;
+
+      letter-spacing:
+        0.6px;
+    }
+
+
+    .dispatch-date {
+
+      color:
+        #172554;
+
+      font-size:
+        19px;
+
+      font-weight:
+        800;
+
+      margin-top:
+        4px;
+    }
+
+
+    .form-group {
+
+      margin-bottom:
+        20px;
+    }
+
+
+    .date-grid {
+
+      display:
+        grid;
+
+      grid-template-columns:
+        repeat(3,1fr);
+
+      gap:
+        10px;
+    }
+
+
+    /* MESSAGES */
+
+    .message {
+
+      margin-top:
+        16px;
+
+      padding:
+        14px 16px;
+
+      border-radius:
+        10px;
+
+      font-size:
+        15px;
+
+      font-weight:
+        600;
+
+      display:
+        none;
+    }
+
+
+    .error {
+
+      background:
+        #fef2f2;
+
+      color:
+        #991b1b;
+
+      border:
+        1px solid #fecaca;
+    }
+
+
+    /* THANK YOU */
+
+    .thank-you {
+
+      text-align:
+        center;
+
+      padding:
+        30px 20px;
+    }
+
+
+    .thank-you-icon {
+
+      width:
+        65px;
+
+      height:
+        65px;
+
+      margin:
+        0 auto 18px;
+
+      border-radius:
+        50%;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      background:
+        #dcfce7;
+
+      color:
+        #15803d;
+
+      font-size:
+        32px;
+
+      font-weight:
+        900;
+    }
+
+
+    .thank-you h2 {
+
+      margin:
+        0 0 10px;
+
+      font-size:
+        25px;
+
+      color:
+        #166534;
+    }
+
+
+    .thank-you p {
+
+      margin:
+        0;
+
+      color:
+        #475569;
+
+      font-size:
+        16px;
+    }
+
+
+    /* POPUP */
+
+    .modal-overlay {
+
+      position:
+        fixed;
+
+      inset:
+        0;
+
+      background:
+        rgba(15,23,42,0.62);
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      padding:
+        20px;
+
+      z-index:
+        9999;
+    }
+
+
+    .modal {
+
+      width:
+        100%;
+
+      max-width:
+        480px;
+
+      background:
+        white;
+
+      border-radius:
+        20px;
+
+      padding:
+        32px 28px;
+
+      text-align:
+        center;
+
+      box-shadow:
+        0 25px 70px
+        rgba(0,0,0,0.25);
+    }
+
+
+    .modal-icon {
+
+      width:
+        70px;
+
+      height:
+        70px;
+
+      margin:
+        0 auto 18px;
+
+      border-radius:
+        50%;
+
+      background:
+        #dcfce7;
+
+      color:
+        #15803d;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      font-size:
+        34px;
+
+      font-weight:
+        900;
+    }
+
+
+    .modal h2 {
+
+      margin:
+        0 0 12px;
+
+      color:
+        #0f172a;
+
+      font-size:
+        23px;
+
+      line-height:
+        1.35;
+    }
+
+
+    .modal p {
+
+      margin:
+        0 0 22px;
+
+      color:
+        #475569;
+
+      font-size:
+        16px;
+
+      line-height:
+        1.55;
+    }
+
+
+    .modal-btn {
+
+      width:
+        100%;
+
+      padding:
+        14px;
+
+      border:
+        none;
+
+      border-radius:
+        10px;
+
+      background:
+        #1d4ed8;
+
+      color:
+        white;
+
+      font-size:
+        16px;
+
+      font-weight:
+        800;
+
+      cursor:
+        pointer;
+    }
+
+
+    /* MOBILE */
+
+    @media (
+      max-width:650px
+    ) {
+
+      .header {
+
+        padding:
+          21px 15px;
+      }
+
+
+      .contest-title {
+
+        font-size:
+          24px;
+      }
+
+
+      .header h1 {
+
+        font-size:
+          17px;
+      }
+
+
+      .container {
+
+        margin:
+          22px auto;
+
+        padding:
+          0 12px;
+      }
+
+
+      .card {
+
+        padding:
+          21px 17px;
+
+        border-radius:
+          15px;
+      }
+
+
+      .details-grid {
+
+        grid-template-columns:
+          1fr;
+      }
+
+
+      .address-box {
+
+        grid-column:
+          auto;
+      }
+
+
+      .date-grid {
+
+        grid-template-columns:
+          1fr;
+      }
+
+
+      .question {
+
+        font-size:
+          18px;
+      }
+
+
+      .modal {
+
+        padding:
+          28px 21px;
+      }
+
     }
 
   </style>
 
 </head>
 
+
 <body>
 
-  <iframe
-    src="https://script.google.com/macros/s/AKfycbzq5MuQNobfpJv9cv-i3HP0g4aSgeCksJt159Bx8YtHD9gQlR-3iwSyvbYcqW1euqvvTQ/exec"
-    title="Freedom Contest 2026 Certificate and Shield Delivery Confirmation"
-    allow="clipboard-write">
-  </iframe>
+
+<!-- HEADER -->
+
+<div class="header">
+
+  <div class="contest-title">
+    Freedom Contest 2026
+  </div>
+
+  <h1>
+    Certificate &amp; Shield Delivery Confirmation
+  </h1>
+
+</div>
+
+
+
+<div class="container">
+
+
+  <!-- MOBILE -->
+
+  <div
+    id="mobileCard"
+    class="card"
+  >
+
+    <div class="question">
+      Please enter your registered mobile number.
+    </div>
+
+
+    <input
+      type="tel"
+      id="mobile"
+      placeholder="Enter registered mobile number"
+      autocomplete="tel"
+      maxlength="15"
+    >
+
+
+    <button
+      id="verifyBtn"
+      class="btn"
+      onclick="verifyMobile()"
+    >
+      Verify Mobile Number
+    </button>
+
+
+    <div
+      id="verifyMessage"
+      class="message error"
+    ></div>
+
+  </div>
+
+
+
+  <!-- RECIPIENT -->
+
+  <div
+    id="recipientCard"
+    class="card hidden"
+  >
+
+    <div class="details-grid">
+
+
+      <div class="detail-box">
+
+        <div class="detail-label">
+          Name
+        </div>
+
+        <div
+          id="name"
+          class="detail-value"
+        ></div>
+
+      </div>
+
+
+      <div class="detail-box">
+
+        <div class="detail-label">
+          Prize
+        </div>
+
+        <div
+          id="prize"
+          class="detail-value"
+        ></div>
+
+      </div>
+
+
+      <div class="detail-box">
+
+        <div class="detail-label">
+          Class
+        </div>
+
+        <div
+          id="className"
+          class="detail-value"
+        ></div>
+
+      </div>
+
+
+      <div class="detail-box">
+
+        <div class="detail-label">
+          School
+        </div>
+
+        <div
+          id="school"
+          class="detail-value"
+        ></div>
+
+      </div>
+
+
+      <div class="detail-box address-box">
+
+        <div class="detail-label">
+          Address
+        </div>
+
+        <div
+          id="address"
+          class="detail-value"
+        ></div>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+
+
+  <!-- DELIVERY -->
+
+  <div
+    id="deliveryCard"
+    class="card hidden"
+  >
+
+    <div class="section-title">
+      Delivery Confirmation
+    </div>
+
+
+    <div class="dispatch-box">
+
+      <div class="dispatch-label">
+        Dispatch Date
+      </div>
+
+      <div
+        id="dispatchDate"
+        class="dispatch-date"
+      >
+        29/09/2026
+      </div>
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label for="received">
+
+        Have you received the package containing the certificate and shield?
+
+      </label>
+
+
+      <select
+        id="received"
+        onchange="toggleReceivedFields()"
+      >
+
+        <option value="">
+          Select
+        </option>
+
+        <option value="Received">
+          Received
+        </option>
+
+        <option value="Not Received">
+          Not Received
+        </option>
+
+      </select>
+
+    </div>
+
+
+    <div
+      id="receivedFields"
+      class="hidden"
+    >
+
+
+      <div class="form-group">
+
+        <label>
+          Date Received
+        </label>
+
+
+        <div class="date-grid">
+
+          <select id="day">
+
+            <option value="">
+              Day
+            </option>
+
+          </select>
+
+
+          <select id="month">
+
+            <option value="">
+              Month
+            </option>
+
+            <option value="01">January</option>
+            <option value="02">February</option>
+            <option value="03">March</option>
+            <option value="04">April</option>
+            <option value="05">May</option>
+            <option value="06">June</option>
+            <option value="07">July</option>
+            <option value="08">August</option>
+            <option value="09">September</option>
+            <option value="10">October</option>
+            <option value="11">November</option>
+            <option value="12">December</option>
+
+          </select>
+
+
+          <select id="year">
+
+            <option value="">
+              Year
+            </option>
+
+            <option value="2026">2026</option>
+            <option value="2027">2027</option>
+            <option value="2028">2028</option>
+            <option value="2029">2029</option>
+            <option value="2030">2030</option>
+
+          </select>
+
+        </div>
+
+      </div>
+
+
+
+      <div class="form-group">
+
+        <label for="condition">
+          Condition of Package
+        </label>
+
+
+        <select id="condition">
+
+          <option value="">
+            Select
+          </option>
+
+          <option value="Good">
+            Good
+          </option>
+
+          <option value="Damaged">
+            Damaged
+          </option>
+
+        </select>
+
+      </div>
+
+
+    </div>
+
+
+
+    <button
+      id="submitBtn"
+      class="btn"
+      onclick="submitConfirmation()"
+    >
+      Submit Delivery Confirmation
+    </button>
+
+
+    <div
+      id="submitMessage"
+      class="message error"
+    ></div>
+
+  </div>
+
+
+
+  <!-- THANK YOU -->
+
+  <div
+    id="thankYouCard"
+    class="card thank-you hidden"
+  >
+
+    <div class="thank-you-icon">
+      ✓
+    </div>
+
+    <h2>
+      Thank You
+    </h2>
+
+    <p>
+      Thank you for being a part of Freedom Contest 2026.
+    </p>
+
+  </div>
+
+
+</div>
+
+
+
+<!-- CEREMONY POPUP -->
+
+<div
+  id="ceremonyModal"
+  class="modal-overlay hidden"
+>
+
+  <div class="modal">
+
+    <div class="modal-icon">
+      ✓
+    </div>
+
+
+    <h2>
+      Received Certificate and Shield during the ceremony.
+    </h2>
+
+
+    <p>
+      Our records indicate that the certificate and shield
+      were received during the ceremony in person.
+    </p>
+
+
+    <button
+      class="modal-btn"
+      onclick="closeCeremonyPopup()"
+    >
+      OK
+    </button>
+
+  </div>
+
+</div>
+
+
+
+<script>
+
+
+/*
+ * YOUR APPS SCRIPT BACKEND
+ */
+const API_URL =
+  'https://script.google.com/macros/s/AKfycbzq5MuQNobfpJv9cv-i3HP0g4aSgeCksJt159Bx8YtHD9gQlR-3iwSyvbYcqW1euqvvTQ/exec';
+
+
+let currentWinner =
+  null;
+
+
+
+/*
+ * JSONP helper.
+ *
+ * This allows GitHub Pages to call
+ * Apps Script without CORS problems.
+ */
+function callApi(
+  params
+) {
+
+  return new Promise(
+    function(resolve, reject) {
+
+      const callbackName =
+        'fc26Callback_' +
+        Date.now() +
+        '_' +
+        Math.floor(
+          Math.random() * 100000
+        );
+
+
+      const script =
+        document.createElement(
+          'script'
+        );
+
+
+      let finished =
+        false;
+
+
+      const timer =
+        setTimeout(
+          function() {
+
+            if (finished) {
+              return;
+            }
+
+            finished = true;
+
+            cleanup();
+
+            reject(
+              new Error(
+                'The server did not respond. Please try again.'
+              )
+            );
+
+          },
+          20000
+        );
+
+
+      window[callbackName] =
+        function(data) {
+
+          if (finished) {
+            return;
+          }
+
+          finished = true;
+
+          clearTimeout(timer);
+
+          cleanup();
+
+          resolve(data);
+        };
+
+
+      function cleanup() {
+
+        delete window[
+          callbackName
+        ];
+
+        if (
+          script.parentNode
+        ) {
+
+          script.parentNode.removeChild(
+            script
+          );
+        }
+      }
+
+
+      const query =
+        new URLSearchParams();
+
+
+      Object.keys(params)
+        .forEach(
+          function(key) {
+
+            query.append(
+              key,
+              params[key]
+            );
+          }
+        );
+
+
+      query.append(
+        'callback',
+        callbackName
+      );
+
+
+      script.src =
+        API_URL +
+        '?' +
+        query.toString();
+
+
+      script.onerror =
+        function() {
+
+          if (finished) {
+            return;
+          }
+
+          finished = true;
+
+          clearTimeout(timer);
+
+          cleanup();
+
+          reject(
+            new Error(
+              'Unable to connect to the delivery service.'
+            )
+          );
+        };
+
+
+      document
+        .body
+        .appendChild(
+          script
+        );
+
+    }
+  );
+}
+
+
+
+/*
+ * Verify mobile.
+ */
+async function verifyMobile() {
+
+  const mobileInput =
+    document.getElementById(
+      'mobile'
+    );
+
+
+  const verifyBtn =
+    document.getElementById(
+      'verifyBtn'
+    );
+
+
+  const message =
+    document.getElementById(
+      'verifyMessage'
+    );
+
+
+  const mobile =
+    mobileInput.value.trim();
+
+
+  hideMessage(
+    message
+  );
+
+
+  if (!mobile) {
+
+    showMessage(
+      message,
+      'Please enter your registered mobile number.'
+    );
+
+    return;
+  }
+
+
+  verifyBtn.disabled =
+    true;
+
+  verifyBtn.textContent =
+    'Verifying...';
+
+
+  try {
+
+    const result =
+      await callApi({
+
+        action:
+          'find',
+
+        mobile:
+          mobile
+
+      });
+
+
+    verifyBtn.disabled =
+      false;
+
+    verifyBtn.textContent =
+      'Verify Mobile Number';
+
+
+    if (
+      !result ||
+      !result.found
+    ) {
+
+      showMessage(
+        message,
+        'Mobile number not found. Please check the registered mobile number and try again.'
+      );
+
+      return;
+    }
+
+
+    currentWinner =
+      result;
+
+
+    document
+      .getElementById('name')
+      .textContent =
+        result.name || '';
+
+
+    document
+      .getElementById('prize')
+      .textContent =
+        result.prize || '';
+
+
+    document
+      .getElementById('className')
+      .textContent =
+        result.className || '';
+
+
+    document
+      .getElementById('school')
+      .textContent =
+        result.school || '';
+
+
+    document
+      .getElementById('address')
+      .textContent =
+        result.address || '';
+
+
+    document
+      .getElementById('dispatchDate')
+      .textContent =
+        result.dispatchDate ||
+        '29/09/2026';
+
+
+    document
+      .getElementById('recipientCard')
+      .classList
+      .remove('hidden');
+
+
+    /*
+     * COLUMN Y = YES
+     *
+     * Popup ONLY.
+     */
+    const ceremonyStatus =
+      String(
+        result.ceremonyReceived || ''
+      )
+      .trim()
+      .toLowerCase();
+
+
+    if (
+      ceremonyStatus ===
+      'yes'
+    ) {
+
+      document
+        .getElementById('deliveryCard')
+        .classList
+        .add('hidden');
+
+
+      document
+        .getElementById('ceremonyModal')
+        .classList
+        .remove('hidden');
+
+
+    } else if (
+      ceremonyStatus ===
+      'no'
+    ) {
+
+      /*
+       * NO popup.
+       *
+       * Show delivery form.
+       */
+      document
+        .getElementById('deliveryCard')
+        .classList
+        .remove('hidden');
+
+
+    } else {
+
+      /*
+       * Blank/other:
+       * no popup and no form.
+       */
+      document
+        .getElementById('deliveryCard')
+        .classList
+        .add('hidden');
+    }
+
+
+    document
+      .getElementById('mobileCard')
+      .classList
+      .add('hidden');
+
+
+  } catch (error) {
+
+    verifyBtn.disabled =
+      false;
+
+    verifyBtn.textContent =
+      'Verify Mobile Number';
+
+
+    showMessage(
+      message,
+      error.message ||
+      'Unable to verify the mobile number.'
+    );
+  }
+}
+
+
+
+/*
+ * Close ceremony popup.
+ */
+function closeCeremonyPopup() {
+
+  document
+    .getElementById('ceremonyModal')
+    .classList
+    .add('hidden');
+
+
+  document
+    .getElementById('thankYouCard')
+    .classList
+    .remove('hidden');
+}
+
+
+
+/*
+ * Received fields.
+ */
+function toggleReceivedFields() {
+
+  const received =
+    document
+      .getElementById('received')
+      .value;
+
+
+  const fields =
+    document
+      .getElementById('receivedFields');
+
+
+  if (
+    received ===
+    'Received'
+  ) {
+
+    fields
+      .classList
+      .remove('hidden');
+
+  } else {
+
+    fields
+      .classList
+      .add('hidden');
+
+
+    document
+      .getElementById('day')
+      .value = '';
+
+
+    document
+      .getElementById('month')
+      .value = '';
+
+
+    document
+      .getElementById('year')
+      .value = '';
+
+
+    document
+      .getElementById('condition')
+      .value = '';
+  }
+}
+
+
+
+/*
+ * Submit confirmation.
+ */
+async function submitConfirmation() {
+
+  if (!currentWinner) {
+    return;
+  }
+
+
+  const received =
+    document
+      .getElementById('received')
+      .value;
+
+
+  const day =
+    document
+      .getElementById('day')
+      .value;
+
+
+  const month =
+    document
+      .getElementById('month')
+      .value;
+
+
+  const year =
+    document
+      .getElementById('year')
+      .value;
+
+
+  const condition =
+    document
+      .getElementById('condition')
+      .value;
+
+
+  const submitBtn =
+    document
+      .getElementById('submitBtn');
+
+
+  const message =
+    document
+      .getElementById('submitMessage');
+
+
+  hideMessage(
+    message
+  );
+
+
+  if (!received) {
+
+    showMessage(
+      message,
+      'Please select whether the package was received.'
+    );
+
+    return;
+  }
+
+
+  if (
+    received ===
+    'Received'
+  ) {
+
+    if (
+      !day ||
+      !month ||
+      !year
+    ) {
+
+      showMessage(
+        message,
+        'Please select the date received.'
+      );
+
+      return;
+    }
+
+
+    if (!condition) {
+
+      showMessage(
+        message,
+        'Please select the condition of the package.'
+      );
+
+      return;
+    }
+  }
+
+
+  submitBtn.disabled =
+    true;
+
+  submitBtn.textContent =
+    'Submitting...';
+
+
+  try {
+
+    const result =
+      await callApi({
+
+        action:
+          'save',
+
+        mobile:
+          currentWinner.mobile,
+
+        received:
+          received,
+
+        day:
+          day,
+
+        month:
+          month,
+
+        year:
+          year,
+
+        condition:
+          condition
+
+      });
+
+
+    submitBtn.disabled =
+      false;
+
+    submitBtn.textContent =
+      'Submit Delivery Confirmation';
+
+
+    if (
+      result &&
+      result.success
+    ) {
+
+      document
+        .getElementById('deliveryCard')
+        .classList
+        .add('hidden');
+
+
+      document
+        .getElementById('thankYouCard')
+        .classList
+        .remove('hidden');
+
+
+    } else {
+
+      showMessage(
+        message,
+        result &&
+        result.error
+          ? result.error
+          : 'Unable to save the confirmation.'
+      );
+    }
+
+
+  } catch (error) {
+
+    submitBtn.disabled =
+      false;
+
+    submitBtn.textContent =
+      'Submit Delivery Confirmation';
+
+
+    showMessage(
+      message,
+      error.message ||
+      'Unable to save the confirmation.'
+    );
+  }
+}
+
+
+
+/*
+ * Show error.
+ */
+function showMessage(
+  element,
+  text
+) {
+
+  element.textContent =
+    text;
+
+  element.style.display =
+    'block';
+}
+
+
+
+/*
+ * Hide error.
+ */
+function hideMessage(
+  element
+) {
+
+  element.textContent =
+    '';
+
+  element.style.display =
+    'none';
+}
+
+
+
+/*
+ * Populate days.
+ */
+function populateDays() {
+
+  const daySelect =
+    document.getElementById(
+      'day'
+    );
+
+
+  for (
+    let i = 1;
+    i <= 31;
+    i++
+  ) {
+
+    const option =
+      document.createElement(
+        'option'
+      );
+
+
+    const value =
+      String(i)
+        .padStart(2,'0');
+
+
+    option.value =
+      value;
+
+
+    option.textContent =
+      value;
+
+
+    daySelect.appendChild(
+      option
+    );
+  }
+}
+
+
+
+/*
+ * Enter key.
+ */
+document
+  .getElementById('mobile')
+  .addEventListener(
+    'keydown',
+    function(event) {
+
+      if (
+        event.key ===
+        'Enter'
+      ) {
+
+        verifyMobile();
+      }
+
+    }
+  );
+
+
+
+/*
+ * Initialize.
+ */
+populateDays();
+
+</script>
 
 </body>
 
