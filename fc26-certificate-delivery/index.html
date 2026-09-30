@@ -1,1941 +1,1344 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta charset="UTF-8">
+<title>Freedom Contest 2026 - Certificate & Shield Delivery Confirmation</title>
 
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
+<style>
+* {
+    box-sizing: border-box;
+}
 
-  <title>
-    Freedom Contest 2026 | Certificate & Shield Delivery Confirmation
-  </title>
+html,
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+}
 
-  <style>
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background:
+        linear-gradient(135deg, #eff6ff 0%, #ffffff 50%, #dbeafe 100%);
+    color: #172554;
+    min-height: 100vh;
+}
 
-    * {
-      box-sizing: border-box;
+.page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 30px 16px 50px;
+}
+
+.container {
+    width: 100%;
+    max-width: 760px;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    margin: 0;
+    color: #1e3a8a;
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+.header h2 {
+    margin: 8px 0 0;
+    color: #2563eb;
+    font-size: 21px;
+    font-weight: 700;
+}
+
+.card {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 30px;
+    box-shadow:
+        0 15px 45px rgba(30, 58, 138, 0.12);
+    border: 1px solid #dbeafe;
+}
+
+.center {
+    text-align: center;
+}
+
+.label {
+    display: block;
+    font-size: 18px;
+    font-weight: 700;
+    color: #1e3a8a;
+    margin-bottom: 10px;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 14px 15px;
+    border: 1px solid #bfdbfe;
+    border-radius: 10px;
+    background: #ffffff;
+    color: #172554;
+    font-size: 16px;
+    outline: none;
+}
+
+input:focus,
+select:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+button {
+    border: 0;
+    border-radius: 10px;
+    padding: 14px 22px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+button:hover {
+    transform: translateY(-1px);
+}
+
+.primary-btn {
+    width: 100%;
+    background: #1d4ed8;
+    color: #ffffff;
+    margin-top: 16px;
+}
+
+.primary-btn:hover {
+    background: #1e40af;
+}
+
+.secondary-btn {
+    background: #e5e7eb;
+    color: #1f2937;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.message {
+    margin-top: 15px;
+    padding: 13px 15px;
+    border-radius: 10px;
+    font-size: 15px;
+    line-height: 1.5;
+    display: none;
+}
+
+.message.error {
+    display: block;
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    color: #991b1b;
+}
+
+.message.success {
+    display: block;
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    color: #166534;
+}
+
+.recipient {
+    margin-top: 22px;
+}
+
+.info-row {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 13px 0;
+    gap: 15px;
+}
+
+.info-row:last-child {
+    border-bottom: 0;
+}
+
+.info-label {
+    font-weight: 700;
+    color: #1e3a8a;
+}
+
+.info-value {
+    color: #374151;
+    word-break: break-word;
+}
+
+.section {
+    margin-top: 28px;
+}
+
+.section-title {
+    font-size: 20px;
+    font-weight: 800;
+    color: #1e3a8a;
+    margin-bottom: 15px;
+}
+
+.dispatch-box {
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 22px;
+}
+
+.dispatch-label {
+    font-size: 14px;
+    color: #475569;
+    margin-bottom: 4px;
+}
+
+.dispatch-date {
+    font-size: 20px;
+    font-weight: 800;
+    color: #1e3a8a;
+}
+
+.question {
+    font-size: 18px;
+    font-weight: 700;
+    color: #172554;
+    margin-bottom: 10px;
+}
+
+.date-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.field {
+    margin-top: 18px;
+}
+
+.field:first-child {
+    margin-top: 0;
+}
+
+.loading {
+    display: none;
+    text-align: center;
+    margin-top: 15px;
+    color: #1d4ed8;
+    font-weight: 700;
+}
+
+.footer {
+    text-align: center;
+    color: #64748b;
+    font-size: 13px;
+    margin-top: 20px;
+}
+
+/* MODAL */
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.65);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 9999;
+}
+
+.modal-overlay.show {
+    display: flex;
+}
+
+.modal {
+    width: 100%;
+    max-width: 480px;
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 25px 70px rgba(0,0,0,0.25);
+}
+
+.modal-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: #dbeafe;
+    color: #1d4ed8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 18px;
+    font-size: 30px;
+    font-weight: 800;
+}
+
+.modal h3 {
+    margin: 0 0 12px;
+    color: #1e3a8a;
+    font-size: 22px;
+}
+
+.modal p {
+    margin: 0;
+    color: #475569;
+    line-height: 1.6;
+    font-size: 16px;
+}
+
+.modal button {
+    margin-top: 22px;
+    min-width: 130px;
+    background: #1d4ed8;
+    color: #ffffff;
+}
+
+.thank-you {
+    text-align: center;
+    padding: 35px 10px;
+}
+
+.thank-you h3 {
+    color: #1e3a8a;
+    font-size: 26px;
+    margin: 0 0 12px;
+}
+
+.thank-you p {
+    color: #475569;
+    font-size: 17px;
+    line-height: 1.6;
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .page {
+        padding: 20px 12px 35px;
     }
-
-
-    html,
-    body {
-      margin: 0;
-      padding: 0;
-
-      min-height: 100%;
-
-      font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
-
-      background:
-        linear-gradient(
-          135deg,
-          #f8fafc 0%,
-          #eef2ff 50%,
-          #f8fafc 100%
-        );
-
-      color: #172033;
-    }
-
-
-    body {
-      min-height: 100vh;
-    }
-
-
-    /* HEADER */
-
-    .header {
-
-      width: 100%;
-
-      background:
-        linear-gradient(
-          135deg,
-          #0f172a,
-          #1e3a8a
-        );
-
-      color: white;
-
-      padding:
-        25px 20px;
-
-      text-align: center;
-
-      box-shadow:
-        0 4px 18px
-        rgba(0,0,0,0.12);
-    }
-
-
-    .contest-title {
-
-      font-size: 30px;
-
-      font-weight: 900;
-
-      letter-spacing:
-        0.5px;
-
-      margin-bottom:
-        8px;
-    }
-
 
     .header h1 {
-
-      margin: 0;
-
-      font-size: 21px;
-
-      font-weight: 600;
+        font-size: 25px;
     }
 
-
-    /* CONTAINER */
-
-    .container {
-
-      width: 100%;
-
-      max-width: 850px;
-
-      margin:
-        35px auto;
-
-      padding:
-        0 18px;
+    .header h2 {
+        font-size: 17px;
     }
-
-
-    /* CARD */
 
     .card {
-
-      background:
-        white;
-
-      border-radius:
-        18px;
-
-      padding:
-        30px;
-
-      box-shadow:
-        0 10px 35px
-        rgba(15,23,42,0.10);
-
-      border:
-        1px solid #e5e7eb;
-
-      margin-bottom:
-        22px;
+        padding: 20px 16px;
+        border-radius: 14px;
     }
 
-
-    /* QUESTION */
-
-    .question {
-
-      font-size:
-        20px;
-
-      font-weight:
-        700;
-
-      margin-bottom:
-        14px;
+    .info-row {
+        grid-template-columns: 1fr;
+        gap: 5px;
     }
-
-
-    /* INPUTS */
-
-    label {
-
-      display:
-        block;
-
-      font-size:
-        15px;
-
-      font-weight:
-        700;
-
-      margin-bottom:
-        7px;
-
-      color:
-        #334155;
-    }
-
-
-    input,
-    select {
-
-      width:
-        100%;
-
-      padding:
-        14px 15px;
-
-      border-radius:
-        10px;
-
-      border:
-        1px solid #cbd5e1;
-
-      font-size:
-        16px;
-
-      background:
-        white;
-
-      outline:
-        none;
-    }
-
-
-    input:focus,
-    select:focus {
-
-      border-color:
-        #2563eb;
-
-      box-shadow:
-        0 0 0 3px
-        rgba(37,99,235,0.12);
-    }
-
-
-    /* BUTTON */
-
-    .btn {
-
-      width:
-        100%;
-
-      margin-top:
-        18px;
-
-      border:
-        none;
-
-      border-radius:
-        11px;
-
-      padding:
-        15px 20px;
-
-      font-size:
-        17px;
-
-      font-weight:
-        800;
-
-      cursor:
-        pointer;
-
-      color:
-        white;
-
-      background:
-        linear-gradient(
-          135deg,
-          #1d4ed8,
-          #2563eb
-        );
-
-      box-shadow:
-        0 7px 18px
-        rgba(37,99,235,0.20);
-    }
-
-
-    .btn:disabled {
-
-      opacity:
-        0.6;
-
-      cursor:
-        not-allowed;
-    }
-
-
-    /* HIDDEN */
-
-    .hidden {
-
-      display:
-        none !important;
-    }
-
-
-    /* DETAILS */
-
-    .details-grid {
-
-      display:
-        grid;
-
-      grid-template-columns:
-        repeat(2, minmax(0,1fr));
-
-      gap:
-        18px;
-    }
-
-
-    .detail-box {
-
-      background:
-        #f8fafc;
-
-      border:
-        1px solid #e2e8f0;
-
-      border-radius:
-        12px;
-
-      padding:
-        15px;
-    }
-
-
-    .detail-label {
-
-      font-size:
-        12px;
-
-      text-transform:
-        uppercase;
-
-      letter-spacing:
-        0.7px;
-
-      font-weight:
-        800;
-
-      color:
-        #64748b;
-
-      margin-bottom:
-        5px;
-    }
-
-
-    .detail-value {
-
-      font-size:
-        17px;
-
-      font-weight:
-        700;
-
-      color:
-        #172033;
-
-      word-break:
-        break-word;
-    }
-
-
-    .address-box {
-
-      grid-column:
-        1 / -1;
-    }
-
-
-    /* SECTION */
-
-    .section-title {
-
-      font-size:
-        22px;
-
-      font-weight:
-        800;
-
-      color:
-        #0f172a;
-
-      margin:
-        0 0 20px 0;
-    }
-
-
-    /* DISPATCH */
-
-    .dispatch-box {
-
-      background:
-        #eff6ff;
-
-      border:
-        1px solid #bfdbfe;
-
-      border-radius:
-        12px;
-
-      padding:
-        16px;
-
-      margin-bottom:
-        22px;
-    }
-
-
-    .dispatch-label {
-
-      color:
-        #1e40af;
-
-      font-size:
-        13px;
-
-      font-weight:
-        800;
-
-      text-transform:
-        uppercase;
-
-      letter-spacing:
-        0.6px;
-    }
-
-
-    .dispatch-date {
-
-      color:
-        #172554;
-
-      font-size:
-        19px;
-
-      font-weight:
-        800;
-
-      margin-top:
-        4px;
-    }
-
-
-    .form-group {
-
-      margin-bottom:
-        20px;
-    }
-
 
     .date-grid {
-
-      display:
-        grid;
-
-      grid-template-columns:
-        repeat(3,1fr);
-
-      gap:
-        10px;
+        grid-template-columns: 1fr;
     }
 
-
-    /* MESSAGES */
-
-    .message {
-
-      margin-top:
-        16px;
-
-      padding:
-        14px 16px;
-
-      border-radius:
-        10px;
-
-      font-size:
-        15px;
-
-      font-weight:
-        600;
-
-      display:
-        none;
+    .question {
+        font-size: 17px;
     }
-
-
-    .error {
-
-      background:
-        #fef2f2;
-
-      color:
-        #991b1b;
-
-      border:
-        1px solid #fecaca;
-    }
-
-
-    /* THANK YOU */
-
-    .thank-you {
-
-      text-align:
-        center;
-
-      padding:
-        30px 20px;
-    }
-
-
-    .thank-you-icon {
-
-      width:
-        65px;
-
-      height:
-        65px;
-
-      margin:
-        0 auto 18px;
-
-      border-radius:
-        50%;
-
-      display:
-        flex;
-
-      align-items:
-        center;
-
-      justify-content:
-        center;
-
-      background:
-        #dcfce7;
-
-      color:
-        #15803d;
-
-      font-size:
-        32px;
-
-      font-weight:
-        900;
-    }
-
-
-    .thank-you h2 {
-
-      margin:
-        0 0 10px;
-
-      font-size:
-        25px;
-
-      color:
-        #166534;
-    }
-
-
-    .thank-you p {
-
-      margin:
-        0;
-
-      color:
-        #475569;
-
-      font-size:
-        16px;
-    }
-
-
-    /* POPUP */
-
-    .modal-overlay {
-
-      position:
-        fixed;
-
-      inset:
-        0;
-
-      background:
-        rgba(15,23,42,0.62);
-
-      display:
-        flex;
-
-      align-items:
-        center;
-
-      justify-content:
-        center;
-
-      padding:
-        20px;
-
-      z-index:
-        9999;
-    }
-
 
     .modal {
-
-      width:
-        100%;
-
-      max-width:
-        480px;
-
-      background:
-        white;
-
-      border-radius:
-        20px;
-
-      padding:
-        32px 28px;
-
-      text-align:
-        center;
-
-      box-shadow:
-        0 25px 70px
-        rgba(0,0,0,0.25);
+        padding: 25px 20px;
     }
-
-
-    .modal-icon {
-
-      width:
-        70px;
-
-      height:
-        70px;
-
-      margin:
-        0 auto 18px;
-
-      border-radius:
-        50%;
-
-      background:
-        #dcfce7;
-
-      color:
-        #15803d;
-
-      display:
-        flex;
-
-      align-items:
-        center;
-
-      justify-content:
-        center;
-
-      font-size:
-        34px;
-
-      font-weight:
-        900;
-    }
-
-
-    .modal h2 {
-
-      margin:
-        0 0 12px;
-
-      color:
-        #0f172a;
-
-      font-size:
-        23px;
-
-      line-height:
-        1.35;
-    }
-
-
-    .modal p {
-
-      margin:
-        0 0 22px;
-
-      color:
-        #475569;
-
-      font-size:
-        16px;
-
-      line-height:
-        1.55;
-    }
-
-
-    .modal-btn {
-
-      width:
-        100%;
-
-      padding:
-        14px;
-
-      border:
-        none;
-
-      border-radius:
-        10px;
-
-      background:
-        #1d4ed8;
-
-      color:
-        white;
-
-      font-size:
-        16px;
-
-      font-weight:
-        800;
-
-      cursor:
-        pointer;
-    }
-
-
-    /* MOBILE */
-
-    @media (
-      max-width:650px
-    ) {
-
-      .header {
-
-        padding:
-          21px 15px;
-      }
-
-
-      .contest-title {
-
-        font-size:
-          24px;
-      }
-
-
-      .header h1 {
-
-        font-size:
-          17px;
-      }
-
-
-      .container {
-
-        margin:
-          22px auto;
-
-        padding:
-          0 12px;
-      }
-
-
-      .card {
-
-        padding:
-          21px 17px;
-
-        border-radius:
-          15px;
-      }
-
-
-      .details-grid {
-
-        grid-template-columns:
-          1fr;
-      }
-
-
-      .address-box {
-
-        grid-column:
-          auto;
-      }
-
-
-      .date-grid {
-
-        grid-template-columns:
-          1fr;
-      }
-
-
-      .question {
-
-        font-size:
-          18px;
-      }
-
-
-      .modal {
-
-        padding:
-          28px 21px;
-      }
-
-    }
-
-  </style>
-
+}
+</style>
 </head>
-
 
 <body>
 
+<div class="page">
 
-<!-- HEADER -->
+    <div class="container">
 
-<div class="header">
+        <div class="header">
+            <h1>Freedom Contest 2026</h1>
+            <h2>Certificate &amp; Shield Delivery Confirmation</h2>
+        </div>
 
-  <div class="contest-title">
-    Freedom Contest 2026
-  </div>
+        <!-- INITIAL VERIFICATION -->
+        <div id="verificationCard" class="card">
 
-  <h1>
-    Certificate &amp; Shield Delivery Confirmation
-  </h1>
+            <div class="center">
+
+                <label class="label" for="mobile">
+                    Please enter your registered mobile number.
+                </label>
+
+                <input
+                    id="mobile"
+                    type="tel"
+                    inputmode="numeric"
+                    autocomplete="tel"
+                    maxlength="15"
+                    placeholder="Enter registered mobile number"
+                >
+
+                <button
+                    id="verifyBtn"
+                    class="primary-btn"
+                    type="button"
+                    onclick="verifyMobile()"
+                >
+                    Verify Mobile Number
+                </button>
+
+                <div id="loadingVerify" class="loading">
+                    Verifying mobile number...
+                </div>
+
+                <div id="verifyMessage" class="message"></div>
+
+            </div>
+
+        </div>
+
+
+        <!-- RECIPIENT CARD -->
+        <div id="recipientCard" class="card hidden">
+
+            <div class="recipient">
+
+                <div class="info-row">
+                    <div class="info-label">Name</div>
+                    <div id="recipientName" class="info-value"></div>
+                </div>
+
+                <div class="info-row">
+                    <div class="info-label">Prize</div>
+                    <div id="recipientPrize" class="info-value"></div>
+                </div>
+
+                <div class="info-row">
+                    <div class="info-label">Class</div>
+                    <div id="recipientClass" class="info-value"></div>
+                </div>
+
+                <div class="info-row">
+                    <div class="info-label">School</div>
+                    <div id="recipientSchool" class="info-value"></div>
+                </div>
+
+                <div class="info-row">
+                    <div class="info-label">Address</div>
+                    <div id="recipientAddress" class="info-value"></div>
+                </div>
+
+            </div>
+
+
+            <!-- DELIVERY FORM -->
+            <div id="deliverySection" class="section hidden">
+
+                <div class="dispatch-box">
+
+                    <div class="dispatch-label">
+                        Dispatch Date
+                    </div>
+
+                    <div id="dispatchDate" class="dispatch-date">
+                        29/09/2026
+                    </div>
+
+                </div>
+
+
+                <div class="question">
+                    Have you received the package containing the certificate and shield?
+                </div>
+
+                <div class="field">
+
+                    <select id="received">
+                        <option value="">
+                            Select
+                        </option>
+
+                        <option value="Received">
+                            Received
+                        </option>
+
+                        <option value="Not Received">
+                            Not Received
+                        </option>
+                    </select>
+
+                </div>
+
+
+                <!-- RECEIVED DETAILS -->
+
+                <div id="receivedDetails" class="hidden">
+
+                    <div class="field">
+
+                        <label class="label" for="day">
+                            Date Received
+                        </label>
+
+                        <div class="date-grid">
+
+                            <select id="day">
+                                <option value="">Day</option>
+                            </select>
+
+                            <select id="month">
+                                <option value="">Month</option>
+                            </select>
+
+                            <select id="year">
+                                <option value="">Year</option>
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label class="label" for="condition">
+                            Condition of Package
+                        </label>
+
+                        <select id="condition">
+
+                            <option value="">
+                                Select condition
+                            </option>
+
+                            <option value="Good">
+                                Good
+                            </option>
+
+                            <option value="Damaged">
+                                Damaged
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    id="submitBtn"
+                    class="primary-btn"
+                    type="button"
+                    onclick="submitConfirmation()"
+                >
+                    Submit Delivery Confirmation
+                </button>
+
+                <div id="loadingSave" class="loading">
+                    Saving delivery confirmation...
+                </div>
+
+                <div id="saveMessage" class="message"></div>
+
+            </div>
+
+
+            <!-- FINAL THANK YOU -->
+            <div id="thankYouSection" class="thank-you hidden">
+
+                <h3>Thank You</h3>
+
+                <p>
+                    Thank you for being a part of Freedom Contest 2026.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer">
+            Freedom Contest 2026
+        </div>
+
+    </div>
 
 </div>
 
 
+<!-- CEREMONY MODAL -->
 
-<div class="container">
+<div id="ceremonyModal" class="modal-overlay">
 
+    <div class="modal">
 
-  <!-- MOBILE -->
-
-  <div
-    id="mobileCard"
-    class="card"
-  >
-
-    <div class="question">
-      Please enter your registered mobile number.
-    </div>
-
-
-    <input
-      type="tel"
-      id="mobile"
-      placeholder="Enter registered mobile number"
-      autocomplete="tel"
-      maxlength="15"
-    >
-
-
-    <button
-      id="verifyBtn"
-      class="btn"
-      onclick="verifyMobile()"
-    >
-      Verify Mobile Number
-    </button>
-
-
-    <div
-      id="verifyMessage"
-      class="message error"
-    ></div>
-
-  </div>
-
-
-
-  <!-- RECIPIENT -->
-
-  <div
-    id="recipientCard"
-    class="card hidden"
-  >
-
-    <div class="details-grid">
-
-
-      <div class="detail-box">
-
-        <div class="detail-label">
-          Name
+        <div class="modal-icon">
+            ✓
         </div>
 
-        <div
-          id="name"
-          class="detail-value"
-        ></div>
+        <h3>
+            Certificate &amp; Shield Received
+        </h3>
 
-      </div>
+        <p>
+            Received Certificate and Shield during the ceremony.
+        </p>
 
-
-      <div class="detail-box">
-
-        <div class="detail-label">
-          Prize
-        </div>
-
-        <div
-          id="prize"
-          class="detail-value"
-        ></div>
-
-      </div>
-
-
-      <div class="detail-box">
-
-        <div class="detail-label">
-          Class
-        </div>
-
-        <div
-          id="className"
-          class="detail-value"
-        ></div>
-
-      </div>
-
-
-      <div class="detail-box">
-
-        <div class="detail-label">
-          School
-        </div>
-
-        <div
-          id="school"
-          class="detail-value"
-        ></div>
-
-      </div>
-
-
-      <div class="detail-box address-box">
-
-        <div class="detail-label">
-          Address
-        </div>
-
-        <div
-          id="address"
-          class="detail-value"
-        ></div>
-
-      </div>
-
+        <button
+            type="button"
+            onclick="closeCeremonyModal()"
+        >
+            Thank You
+        </button>
 
     </div>
-
-  </div>
-
-
-
-  <!-- DELIVERY -->
-
-  <div
-    id="deliveryCard"
-    class="card hidden"
-  >
-
-    <div class="section-title">
-      Delivery Confirmation
-    </div>
-
-
-    <div class="dispatch-box">
-
-      <div class="dispatch-label">
-        Dispatch Date
-      </div>
-
-      <div
-        id="dispatchDate"
-        class="dispatch-date"
-      >
-        29/09/2026
-      </div>
-
-    </div>
-
-
-    <div class="form-group">
-
-      <label for="received">
-
-        Have you received the package containing the certificate and shield?
-
-      </label>
-
-
-      <select
-        id="received"
-        onchange="toggleReceivedFields()"
-      >
-
-        <option value="">
-          Select
-        </option>
-
-        <option value="Received">
-          Received
-        </option>
-
-        <option value="Not Received">
-          Not Received
-        </option>
-
-      </select>
-
-    </div>
-
-
-    <div
-      id="receivedFields"
-      class="hidden"
-    >
-
-
-      <div class="form-group">
-
-        <label>
-          Date Received
-        </label>
-
-
-        <div class="date-grid">
-
-          <select id="day">
-
-            <option value="">
-              Day
-            </option>
-
-          </select>
-
-
-          <select id="month">
-
-            <option value="">
-              Month
-            </option>
-
-            <option value="01">January</option>
-            <option value="02">February</option>
-            <option value="03">March</option>
-            <option value="04">April</option>
-            <option value="05">May</option>
-            <option value="06">June</option>
-            <option value="07">July</option>
-            <option value="08">August</option>
-            <option value="09">September</option>
-            <option value="10">October</option>
-            <option value="11">November</option>
-            <option value="12">December</option>
-
-          </select>
-
-
-          <select id="year">
-
-            <option value="">
-              Year
-            </option>
-
-            <option value="2026">2026</option>
-            <option value="2027">2027</option>
-            <option value="2028">2028</option>
-            <option value="2029">2029</option>
-            <option value="2030">2030</option>
-
-          </select>
-
-        </div>
-
-      </div>
-
-
-
-      <div class="form-group">
-
-        <label for="condition">
-          Condition of Package
-        </label>
-
-
-        <select id="condition">
-
-          <option value="">
-            Select
-          </option>
-
-          <option value="Good">
-            Good
-          </option>
-
-          <option value="Damaged">
-            Damaged
-          </option>
-
-        </select>
-
-      </div>
-
-
-    </div>
-
-
-
-    <button
-      id="submitBtn"
-      class="btn"
-      onclick="submitConfirmation()"
-    >
-      Submit Delivery Confirmation
-    </button>
-
-
-    <div
-      id="submitMessage"
-      class="message error"
-    ></div>
-
-  </div>
-
-
-
-  <!-- THANK YOU -->
-
-  <div
-    id="thankYouCard"
-    class="card thank-you hidden"
-  >
-
-    <div class="thank-you-icon">
-      ✓
-    </div>
-
-    <h2>
-      Thank You
-    </h2>
-
-    <p>
-      Thank you for being a part of Freedom Contest 2026.
-    </p>
-
-  </div>
-
 
 </div>
-
-
-
-<!-- CEREMONY POPUP -->
-
-<div
-  id="ceremonyModal"
-  class="modal-overlay hidden"
->
-
-  <div class="modal">
-
-    <div class="modal-icon">
-      ✓
-    </div>
-
-
-    <h2>
-      Received Certificate and Shield during the ceremony.
-    </h2>
-
-
-    <p>
-      Our records indicate that the certificate and shield
-      were received during the ceremony in person.
-    </p>
-
-
-    <button
-      class="modal-btn"
-      onclick="closeCeremonyPopup()"
-    >
-      OK
-    </button>
-
-  </div>
-
-</div>
-
 
 
 <script>
 
+/* =========================================================
+   CLOUDFLARE WORKER API
+========================================================= */
 
-/*
- * YOUR APPS SCRIPT BACKEND
- */
-const API_URL =
-  'https://script.google.com/macros/s/AKfycbzq5MuQNobfpJv9cv-i3HP0g4aSgeCksJt159Bx8YtHD9gQlR-3iwSyvbYcqW1euqvvTQ/exec';
-
-
-let currentWinner =
-  null;
+const API_BASE =
+    "https://freedom-contest-delivery-api.late-bonus-4c55.workers.dev";
 
 
+/* =========================================================
+   CURRENT WINNER
+========================================================= */
 
-/*
- * JSONP helper.
- *
- * This allows GitHub Pages to call
- * Apps Script without CORS problems.
- */
-function callApi(
-  params
-) {
-
-  return new Promise(
-    function(resolve, reject) {
-
-      const callbackName =
-        'fc26Callback_' +
-        Date.now() +
-        '_' +
-        Math.floor(
-          Math.random() * 100000
-        );
+let currentWinner = null;
 
 
-      const script =
-        document.createElement(
-          'script'
-        );
+/* =========================================================
+   ELEMENTS
+========================================================= */
+
+const mobileInput =
+    document.getElementById("mobile");
+
+const verifyBtn =
+    document.getElementById("verifyBtn");
+
+const verificationCard =
+    document.getElementById("verificationCard");
+
+const recipientCard =
+    document.getElementById("recipientCard");
+
+const deliverySection =
+    document.getElementById("deliverySection");
+
+const thankYouSection =
+    document.getElementById("thankYouSection");
+
+const receivedSelect =
+    document.getElementById("received");
+
+const receivedDetails =
+    document.getElementById("receivedDetails");
+
+const verifyMessage =
+    document.getElementById("verifyMessage");
+
+const saveMessage =
+    document.getElementById("saveMessage");
+
+const loadingVerify =
+    document.getElementById("loadingVerify");
+
+const loadingSave =
+    document.getElementById("loadingSave");
 
 
-      let finished =
-        false;
+/* =========================================================
+   DATE DROPDOWNS
+========================================================= */
+
+function populateDateDropdowns() {
+
+    const day =
+        document.getElementById("day");
+
+    const month =
+        document.getElementById("month");
+
+    const year =
+        document.getElementById("year");
 
 
-      const timer =
-        setTimeout(
-          function() {
+    for (let i = 1; i <= 31; i++) {
 
-            if (finished) {
-              return;
-            }
+        const option =
+            document.createElement("option");
 
-            finished = true;
+        option.value =
+            String(i).padStart(2, "0");
 
-            cleanup();
+        option.textContent =
+            String(i);
 
-            reject(
-              new Error(
-                'The server did not respond. Please try again.'
-              )
-            );
-
-          },
-          20000
-        );
-
-
-      window[callbackName] =
-        function(data) {
-
-          if (finished) {
-            return;
-          }
-
-          finished = true;
-
-          clearTimeout(timer);
-
-          cleanup();
-
-          resolve(data);
-        };
-
-
-      function cleanup() {
-
-        delete window[
-          callbackName
-        ];
-
-        if (
-          script.parentNode
-        ) {
-
-          script.parentNode.removeChild(
-            script
-          );
-        }
-      }
-
-
-      const query =
-        new URLSearchParams();
-
-
-      Object.keys(params)
-        .forEach(
-          function(key) {
-
-            query.append(
-              key,
-              params[key]
-            );
-          }
-        );
-
-
-      query.append(
-        'callback',
-        callbackName
-      );
-
-
-      script.src =
-        API_URL +
-        '?' +
-        query.toString();
-
-
-      script.onerror =
-        function() {
-
-          if (finished) {
-            return;
-          }
-
-          finished = true;
-
-          clearTimeout(timer);
-
-          cleanup();
-
-          reject(
-            new Error(
-              'Unable to connect to the delivery service.'
-            )
-          );
-        };
-
-
-      document
-        .body
-        .appendChild(
-          script
-        );
-
+        day.appendChild(option);
     }
-  );
+
+
+    const months = [
+        ["01", "January"],
+        ["02", "February"],
+        ["03", "March"],
+        ["04", "April"],
+        ["05", "May"],
+        ["06", "June"],
+        ["07", "July"],
+        ["08", "August"],
+        ["09", "September"],
+        ["10", "October"],
+        ["11", "November"],
+        ["12", "December"]
+    ];
+
+    months.forEach(function(item) {
+
+        const option =
+            document.createElement("option");
+
+        option.value =
+            item[0];
+
+        option.textContent =
+            item[1];
+
+        month.appendChild(option);
+    });
+
+
+    for (let y = 2026; y <= 2030; y++) {
+
+        const option =
+            document.createElement("option");
+
+        option.value =
+            String(y);
+
+        option.textContent =
+            String(y);
+
+        year.appendChild(option);
+    }
 }
 
 
+/* =========================================================
+   API REQUEST
+========================================================= */
 
-/*
- * Verify mobile.
- */
-async function verifyMobile() {
+async function apiRequest(
+    endpoint,
+    options = {}
+) {
 
-  const mobileInput =
-    document.getElementById(
-      'mobile'
-    );
+    const response =
+        await fetch(
+            API_BASE + endpoint,
+            {
+                method:
+                    options.method || "GET",
 
+                headers:
+                    options.headers || {},
 
-  const verifyBtn =
-    document.getElementById(
-      'verifyBtn'
-    );
-
-
-  const message =
-    document.getElementById(
-      'verifyMessage'
-    );
-
-
-  const mobile =
-    mobileInput.value.trim();
+                body:
+                    options.body
+            }
+        );
 
 
-  hideMessage(
-    message
-  );
+    let data;
 
+    try {
 
-  if (!mobile) {
+        data =
+            await response.json();
 
-    showMessage(
-      message,
-      'Please enter your registered mobile number.'
-    );
+    } catch (error) {
 
-    return;
-  }
-
-
-  verifyBtn.disabled =
-    true;
-
-  verifyBtn.textContent =
-    'Verifying...';
-
-
-  try {
-
-    const result =
-      await callApi({
-
-        action:
-          'find',
-
-        mobile:
-          mobile
-
-      });
-
-
-    verifyBtn.disabled =
-      false;
-
-    verifyBtn.textContent =
-      'Verify Mobile Number';
-
-
-    if (
-      !result ||
-      !result.found
-    ) {
-
-      showMessage(
-        message,
-        'Mobile number not found. Please check the registered mobile number and try again.'
-      );
-
-      return;
+        throw new Error(
+            "The delivery service returned an invalid response."
+        );
     }
 
 
-    currentWinner =
-      result;
+    if (!response.ok) {
 
+        throw new Error(
+            data.message ||
+            "Unable to connect to the delivery service."
+        );
+    }
+
+
+    return data;
+}
+
+
+/* =========================================================
+   VERIFY MOBILE
+========================================================= */
+
+async function verifyMobile() {
+
+    clearMessage(
+        verifyMessage
+    );
+
+    const mobile =
+        mobileInput.value.trim();
+
+
+    if (!mobile) {
+
+        showMessage(
+            verifyMessage,
+            "Please enter your registered mobile number.",
+            "error"
+        );
+
+        mobileInput.focus();
+
+        return;
+    }
+
+
+    verifyBtn.disabled =
+        true;
+
+    loadingVerify.style.display =
+        "block";
+
+
+    try {
+
+        const encodedMobile =
+            encodeURIComponent(
+                mobile
+            );
+
+
+        const result =
+            await apiRequest(
+                "/find?mobile=" +
+                encodedMobile
+            );
+
+
+        if (!result.success) {
+
+            showMessage(
+                verifyMessage,
+                result.message ||
+                "Mobile number not found. Please check the registered mobile number and try again.",
+                "error"
+            );
+
+            return;
+        }
+
+
+        currentWinner =
+            result;
+
+
+        document.getElementById(
+            "recipientName"
+        ).textContent =
+            result.name || "";
+
+
+        document.getElementById(
+            "recipientPrize"
+        ).textContent =
+            result.prize || "";
+
+
+        document.getElementById(
+            "recipientClass"
+        ).textContent =
+            result.className || "";
+
+
+        document.getElementById(
+            "recipientSchool"
+        ).textContent =
+            result.school || "";
+
+
+        document.getElementById(
+            "recipientAddress"
+        ).textContent =
+            result.address || "";
+
+
+        document.getElementById(
+            "dispatchDate"
+        ).textContent =
+            result.dispatchDate ||
+            "29/09/2026";
+
+
+        verificationCard.classList.add(
+            "hidden"
+        );
+
+        recipientCard.classList.remove(
+            "hidden"
+        );
+
+
+        /*
+         * Y = YES
+         *
+         * Show ceremony popup ONLY.
+         */
+
+        if (
+            String(
+                result.ceremonyReceived || ""
+            )
+            .trim()
+            .toLowerCase() ===
+            "yes"
+        ) {
+
+            openCeremonyModal();
+
+            return;
+        }
+
+
+        /*
+         * Y = NO
+         *
+         * Show delivery form.
+         */
+
+        deliverySection.classList.remove(
+            "hidden"
+        );
+
+
+    } catch (error) {
+
+        showMessage(
+            verifyMessage,
+            error.message ||
+            "Unable to connect to the delivery service.",
+            "error"
+        );
+
+    } finally {
+
+        verifyBtn.disabled =
+            false;
+
+        loadingVerify.style.display =
+            "none";
+    }
+}
+
+
+/* =========================================================
+   RECEIVED DROPDOWN
+========================================================= */
+
+receivedSelect.addEventListener(
+    "change",
+    function() {
+
+        clearMessage(
+            saveMessage
+        );
+
+
+        if (
+            this.value ===
+            "Received"
+        ) {
+
+            receivedDetails.classList.remove(
+                "hidden"
+            );
+
+        } else {
+
+            receivedDetails.classList.add(
+                "hidden"
+            );
+
+            clearReceivedFields();
+        }
+    }
+);
+
+
+/* =========================================================
+   SUBMIT CONFIRMATION
+========================================================= */
+
+async function submitConfirmation() {
+
+    clearMessage(
+        saveMessage
+    );
+
+
+    if (!currentWinner) {
+
+        showMessage(
+            saveMessage,
+            "Please verify your mobile number first.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    const received =
+        receivedSelect.value;
+
+
+    if (
+        received !== "Received" &&
+        received !== "Not Received"
+    ) {
+
+        showMessage(
+            saveMessage,
+            "Please select whether you have received the package.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    let payload = {
+        mobile:
+            currentWinner.mobile,
+
+        received:
+            received
+    };
+
+
+    if (
+        received ===
+        "Received"
+    ) {
+
+        const day =
+            document.getElementById(
+                "day"
+            ).value;
+
+        const month =
+            document.getElementById(
+                "month"
+            ).value;
+
+        const year =
+            document.getElementById(
+                "year"
+            ).value;
+
+        const condition =
+            document.getElementById(
+                "condition"
+            ).value;
+
+
+        if (
+            !day ||
+            !month ||
+            !year
+        ) {
+
+            showMessage(
+                saveMessage,
+                "Please select the date on which you received the package.",
+                "error"
+            );
+
+            return;
+        }
+
+
+        if (
+            condition !== "Good" &&
+            condition !== "Damaged"
+        ) {
+
+            showMessage(
+                saveMessage,
+                "Please select the condition of the package.",
+                "error"
+            );
+
+            return;
+        }
+
+
+        payload.day =
+            day;
+
+        payload.month =
+            month;
+
+        payload.year =
+            year;
+
+        payload.condition =
+            condition;
+    }
+
+
+    const submitBtn =
+        document.getElementById(
+            "submitBtn"
+        );
+
+
+    submitBtn.disabled =
+        true;
+
+    loadingSave.style.display =
+        "block";
+
+
+    try {
+
+        const result =
+            await apiRequest(
+                "/save",
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body:
+                        JSON.stringify(
+                            payload
+                        )
+                }
+            );
+
+
+        if (!result.success) {
+
+            showMessage(
+                saveMessage,
+                result.message ||
+                "Unable to save the delivery confirmation.",
+                "error"
+            );
+
+            return;
+        }
+
+
+        deliverySection.classList.add(
+            "hidden"
+        );
+
+
+        thankYouSection.classList.remove(
+            "hidden"
+        );
+
+
+    } catch (error) {
+
+        showMessage(
+            saveMessage,
+            error.message ||
+            "Unable to connect to the delivery service.",
+            "error"
+        );
+
+    } finally {
+
+        submitBtn.disabled =
+            false;
+
+        loadingSave.style.display =
+            "none";
+    }
+}
+
+
+/* =========================================================
+   CEREMONY MODAL
+========================================================= */
+
+function openCeremonyModal() {
 
     document
-      .getElementById('name')
-      .textContent =
-        result.name || '';
+        .getElementById(
+            "ceremonyModal"
+        )
+        .classList.add(
+            "show"
+        );
+}
 
 
-    document
-      .getElementById('prize')
-      .textContent =
-        result.prize || '';
-
-
-    document
-      .getElementById('className')
-      .textContent =
-        result.className || '';
-
+function closeCeremonyModal() {
 
     document
-      .getElementById('school')
-      .textContent =
-        result.school || '';
+        .getElementById(
+            "ceremonyModal"
+        )
+        .classList.remove(
+            "show"
+        );
 
 
-    document
-      .getElementById('address')
-      .textContent =
-        result.address || '';
-
-
-    document
-      .getElementById('dispatchDate')
-      .textContent =
-        result.dispatchDate ||
-        '29/09/2026';
-
-
-    document
-      .getElementById('recipientCard')
-      .classList
-      .remove('hidden');
+    recipientCard.classList.add(
+        "hidden"
+    );
 
 
     /*
-     * COLUMN Y = YES
-     *
-     * Popup ONLY.
+     * Show final thank-you after
+     * closing the ceremony popup.
      */
-    const ceremonyStatus =
-      String(
-        result.ceremonyReceived || ''
-      )
-      .trim()
-      .toLowerCase();
 
-
-    if (
-      ceremonyStatus ===
-      'yes'
-    ) {
-
-      document
-        .getElementById('deliveryCard')
-        .classList
-        .add('hidden');
-
-
-      document
-        .getElementById('ceremonyModal')
-        .classList
-        .remove('hidden');
-
-
-    } else if (
-      ceremonyStatus ===
-      'no'
-    ) {
-
-      /*
-       * NO popup.
-       *
-       * Show delivery form.
-       */
-      document
-        .getElementById('deliveryCard')
-        .classList
-        .remove('hidden');
-
-
-    } else {
-
-      /*
-       * Blank/other:
-       * no popup and no form.
-       */
-      document
-        .getElementById('deliveryCard')
-        .classList
-        .add('hidden');
-    }
-
-
-    document
-      .getElementById('mobileCard')
-      .classList
-      .add('hidden');
-
-
-  } catch (error) {
-
-    verifyBtn.disabled =
-      false;
-
-    verifyBtn.textContent =
-      'Verify Mobile Number';
-
-
-    showMessage(
-      message,
-      error.message ||
-      'Unable to verify the mobile number.'
-    );
-  }
-}
-
-
-
-/*
- * Close ceremony popup.
- */
-function closeCeremonyPopup() {
-
-  document
-    .getElementById('ceremonyModal')
-    .classList
-    .add('hidden');
-
-
-  document
-    .getElementById('thankYouCard')
-    .classList
-    .remove('hidden');
-}
-
-
-
-/*
- * Received fields.
- */
-function toggleReceivedFields() {
-
-  const received =
-    document
-      .getElementById('received')
-      .value;
-
-
-  const fields =
-    document
-      .getElementById('receivedFields');
-
-
-  if (
-    received ===
-    'Received'
-  ) {
-
-    fields
-      .classList
-      .remove('hidden');
-
-  } else {
-
-    fields
-      .classList
-      .add('hidden');
-
-
-    document
-      .getElementById('day')
-      .value = '';
-
-
-    document
-      .getElementById('month')
-      .value = '';
-
-
-    document
-      .getElementById('year')
-      .value = '';
-
-
-    document
-      .getElementById('condition')
-      .value = '';
-  }
-}
-
-
-
-/*
- * Submit confirmation.
- */
-async function submitConfirmation() {
-
-  if (!currentWinner) {
-    return;
-  }
-
-
-  const received =
-    document
-      .getElementById('received')
-      .value;
-
-
-  const day =
-    document
-      .getElementById('day')
-      .value;
-
-
-  const month =
-    document
-      .getElementById('month')
-      .value;
-
-
-  const year =
-    document
-      .getElementById('year')
-      .value;
-
-
-  const condition =
-    document
-      .getElementById('condition')
-      .value;
-
-
-  const submitBtn =
-    document
-      .getElementById('submitBtn');
-
-
-  const message =
-    document
-      .getElementById('submitMessage');
-
-
-  hideMessage(
-    message
-  );
-
-
-  if (!received) {
-
-    showMessage(
-      message,
-      'Please select whether the package was received.'
+    verificationCard.classList.add(
+        "hidden"
     );
 
-    return;
-  }
-
-
-  if (
-    received ===
-    'Received'
-  ) {
-
-    if (
-      !day ||
-      !month ||
-      !year
-    ) {
-
-      showMessage(
-        message,
-        'Please select the date received.'
-      );
-
-      return;
-    }
-
-
-    if (!condition) {
-
-      showMessage(
-        message,
-        'Please select the condition of the package.'
-      );
-
-      return;
-    }
-  }
-
-
-  submitBtn.disabled =
-    true;
-
-  submitBtn.textContent =
-    'Submitting...';
-
-
-  try {
-
-    const result =
-      await callApi({
-
-        action:
-          'save',
-
-        mobile:
-          currentWinner.mobile,
-
-        received:
-          received,
-
-        day:
-          day,
-
-        month:
-          month,
-
-        year:
-          year,
-
-        condition:
-          condition
-
-      });
-
-
-    submitBtn.disabled =
-      false;
-
-    submitBtn.textContent =
-      'Submit Delivery Confirmation';
-
-
-    if (
-      result &&
-      result.success
-    ) {
-
-      document
-        .getElementById('deliveryCard')
-        .classList
-        .add('hidden');
-
-
-      document
-        .getElementById('thankYouCard')
-        .classList
-        .remove('hidden');
-
-
-    } else {
-
-      showMessage(
-        message,
-        result &&
-        result.error
-          ? result.error
-          : 'Unable to save the confirmation.'
-      );
-    }
-
-
-  } catch (error) {
-
-    submitBtn.disabled =
-      false;
-
-    submitBtn.textContent =
-      'Submit Delivery Confirmation';
-
-
-    showMessage(
-      message,
-      error.message ||
-      'Unable to save the confirmation.'
+    recipientCard.classList.remove(
+        "hidden"
     );
-  }
+
+    deliverySection.classList.add(
+        "hidden"
+    );
+
+    thankYouSection.classList.remove(
+        "hidden"
+    );
 }
 
 
+/* =========================================================
+   MESSAGE HELPERS
+========================================================= */
 
-/*
- * Show error.
- */
 function showMessage(
-  element,
-  text
+    element,
+    message,
+    type
 ) {
 
-  element.textContent =
-    text;
+    element.textContent =
+        message;
 
-  element.style.display =
-    'block';
+    element.className =
+        "message " +
+        type;
 }
 
 
-
-/*
- * Hide error.
- */
-function hideMessage(
-  element
+function clearMessage(
+    element
 ) {
 
-  element.textContent =
-    '';
+    element.textContent =
+        "";
 
-  element.style.display =
-    'none';
+    element.className =
+        "message";
 }
 
 
+/* =========================================================
+   CLEAR RECEIVED FIELDS
+========================================================= */
 
-/*
- * Populate days.
- */
-function populateDays() {
+function clearReceivedFields() {
 
-  const daySelect =
     document.getElementById(
-      'day'
-    );
+        "day"
+    ).value = "";
 
+    document.getElementById(
+        "month"
+    ).value = "";
 
-  for (
-    let i = 1;
-    i <= 31;
-    i++
-  ) {
+    document.getElementById(
+        "year"
+    ).value = "";
 
-    const option =
-      document.createElement(
-        'option'
-      );
-
-
-    const value =
-      String(i)
-        .padStart(2,'0');
-
-
-    option.value =
-      value;
-
-
-    option.textContent =
-      value;
-
-
-    daySelect.appendChild(
-      option
-    );
-  }
+    document.getElementById(
+        "condition"
+    ).value = "";
 }
 
 
+/* =========================================================
+   ENTER KEY
+========================================================= */
 
-/*
- * Enter key.
- */
-document
-  .getElementById('mobile')
-  .addEventListener(
-    'keydown',
+mobileInput.addEventListener(
+    "keydown",
     function(event) {
 
-      if (
-        event.key ===
-        'Enter'
-      ) {
+        if (
+            event.key ===
+            "Enter"
+        ) {
 
-        verifyMobile();
-      }
+            event.preventDefault();
 
+            verifyMobile();
+        }
     }
-  );
+);
 
 
+/* =========================================================
+   INITIALIZE
+========================================================= */
 
-/*
- * Initialize.
- */
-populateDays();
+populateDateDropdowns();
 
 </script>
 
 </body>
-
 </html>
